@@ -1,0 +1,49 @@
+<?php
+?>
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="index.html" method="post">
+    <input type="submit" value="Выбрать соперников" name="generate">
+</form>
+<div class="result"></div>
+<script>
+    let ar = [
+        'Король Артур',
+        'Алиса в стране чудес',
+        'Синдбад-мореход',
+        'Горгона Медуза',
+        'Робин Гуд',
+        'Большая ступня',
+        'Человек невидимка',
+        'Дракула',
+        'Шерлок Холмс',
+        'Доктор. Джекилл и мистер Хайд',
+        'Малдун',
+        'Рэпторс',
+        'Т-Рекс',
+        'Доктор Cеттлер',
+        'Беовульф',
+        'Красная Шапочка'
+    ];
+
+    let form = document.querySelector('form');
+    let resultDiv = document.querySelector('.result');
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const firstId = Math.floor(Math.random() * ar.length);
+        const first = ar[firstId];
+        ar.splice(firstId, 1);
+        const secondId = Math.floor(Math.random() * ar.length);
+        const second = ar[secondId];
+        const result = document.createElement('p');
+        result.textContent = `${first} vs ${second}`;
+        resultDiv.innerHTML = result.textContent;
+    });
+</script>
+</body>
+</html>
