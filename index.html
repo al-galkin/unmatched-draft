@@ -40,9 +40,7 @@
         ar.splice(firstId, 1);
         const secondId = Math.floor(Math.random() * ar.length);
         const second = ar[secondId];
-        const result = document.createElement('p');
-        result.textContent = `${first} vs ${second}`;
-        resultDiv.innerHTML = result.textContent;
+        resultDiv.innerHTML = `${first} vs ${second}`;
     });
 </script>
 </body>
