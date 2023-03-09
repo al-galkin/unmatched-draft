@@ -9,41 +9,110 @@
     <title>Title</title>
 </head>
 <body>
-<form action="index.html" method="post">
-    <input type="submit" value="Выбрать соперников" name="generate">
-</form>
-<div class="result"></div>
+<div class="generate">
+    <form action="index.html" method="post" class="generate__form">
+        <input type="submit" value="Выбрать соперников" name="generate" class="generate__btn">
+    </form>
+    <div class="generate__result"></div>
+</div>
 <script>
     let ar = [
         'Король Артур',
         'Алиса в стране чудес',
         'Синдбад-мореход',
-        'Горгона Медуза',
+        'Медуза Горгона',
         'Робин Гуд',
-        'Большая ступня',
-        'Человек невидимка',
+        'Бигфут',
+        'Человек-невидимка',
         'Дракула',
         'Шерлок Холмс',
-        'Доктор. Джекилл и мистер Хайд',
+        'Доктор Джекилл и мистер Хайд',
         'Малдун',
-        'Рэпторс',
-        'Т-Рекс',
-        'Доктор Cеттлер',
+        'Рапторы',
+        'T-Rex',
+        'Доктор Сеттлер',
         'Беовульф',
-        'Красная Шапочка'
+        'Красная шапочка'
     ];
 
-    let form = document.querySelector('form');
-    let resultDiv = document.querySelector('.result');
+    let form = document.querySelector('.generate__form');
+    let resultDiv = document.querySelector('.generate__result');
     form.addEventListener("submit", (e) => {
         e.preventDefault();
-        const firstId = Math.floor(Math.random() * ar.length);
+        let firstId = Math.floor(Math.random() * ar.length);
+        let secondId = Math.floor(Math.random() * (ar.length - 1));
+
+        if (secondId === firstId) {
+            secondId++;
+        }
         const first = ar[firstId];
-        ar.splice(firstId, 1);
-        const secondId = Math.floor(Math.random() * ar.length);
         const second = ar[secondId];
-        resultDiv.innerHTML = `${first} vs ${second}`;
+
+        resultDiv.innerHTML = `<b>${first}</b>vs<b>${second}</b>`;
     });
 </script>
+<style>
+    .generate {
+        min-width: 320px;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+    }
+
+    .generate__btn {
+        color: #050404;
+        padding: 10px 20px;
+        text-decoration: none;
+        text-align: center;
+        display: block;
+        background-color: #068d06;
+        background-image: linear-gradient(to left, transparent, transparent 50%, #020c0e 50%, #071502);
+        background-position: 100% 0;
+        background-size: 200% 100%;
+        transition: all .25s ease-in;
+        font: 400 20px tahoma;
+        border: 2px solid #000;
+        border-radius: 50%;
+        height: 250px;
+        width: 250px;
+        -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.08);
+        -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.08);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.08);
+
+    }
+
+    .generate__btn:hover {
+        background-position: 0 0;
+        border-color: #068d06;
+        color: #068d06;
+    }
+
+    .generate__result {
+        font: 400 20px tahoma;
+        margin-top: 50px;
+        text-align: center;
+        min-height: 110px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: center;
+    }
+
+    @media (min-width: 990px) {
+        .generate__btn,
+        .generate__result {
+            font-size: 30px;
+        }
+
+        .generate__btn {
+            height: 350px;
+            width: 350px;
+        }
+    }
+</style>
 </body>
 </html>
